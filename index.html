@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SamsR DocuSafe Platform</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-teal: #0d83a1;
+        --primary-teal-dark: #0a6a82;
+        --primary-orange: #ff7a59;
+        --bg-light: #f4faff;
+        --border-blue: #d1e7f4;
+        --text-dark: #1e293b;
+        --text-muted: #9db2ce;
+        --text-slate: #64748b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Nunito Sans", sans-serif;
+        background-color: #f8fbff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        
+      }
+
+      /* ─── HEADER STYLES ─── */
+      header {
+        position: relative;
+        width: 100%;
+        z-index: 10;
+      }
+      .header-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--primary-teal),
+          #bfe9ff,
+          var(--primary-teal)
+        );
+      }
+      .header-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        z-index: -1;
+      }
+      .header-separator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 40px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--primary-teal) 0%,
+          var(--primary-teal-dark) 100%
+        );
+        box-shadow: 0 4px 14px rgba(13, 131, 161, 0.3);
+        color: white;
+      }
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .brand-name {
+        font-size: 19px;
+        font-weight: 800;
+        letter-spacing: 1.4px;
+        color: var(--text-dark);
+      }
+      .brand-sub {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--primary-teal);
+        margin-top: 2px;
+      }
+
+      .header-tagline {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+      .contact-btn {
+        background: #ddf4ff;
+        border: 1px solid var(--border-blue);
+        padding: 6px 16px;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary-teal);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .contact-btn:hover {
+        background: #bfe9ff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      /* ─── MAIN CARD CONTENT ─── */
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+
+        background-image: linear-gradient(
+     rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.75)
+    ), 
+    url('./bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+      }
+      .card {
+        position: relative;
+        background: var(--bg-light);
+        width: 100%;
+        max-width: 600px;
+        border-radius: 40px;
+        border: 1px solid var(--border-blue);
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(13, 131, 161, 0.06);
+        padding: 50px;
+        text-align: center;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        -top: 64px;
+        -right: 64px;
+        width: 207px;
+        height: 207px;
+        border-radius: 50%;
+        background: #ddf4ff;
+      }
+      .card-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+      .lock-icon {
+        width: 50px;
+        height: 50px;
+        background: #bfe9ff;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #171d1e;
+      }
+      .code-display {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        color: var(--text-dark);
+        margin: 10px 0;
+      }
+      .btn-primary {
+        background: var(--primary-orange);
+        color: white;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 16px;
+        width: 288px;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(255, 122, 89, 0.35);
+      }
+
+      /* ─── FOOTER STYLES ─── */
+      footer {
+        margin-top: auto;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+      .footer-sep {
+        h-height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .trust-strip {
+        padding: 10px 40px;
+        border-bottom: 1px solid rgba(209, 231, 244, 0.5);
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .dot {
+        width: 4px;
+        height: 4px;
+        background: var(--border-blue);
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      .footer-main {
+        padding: 16px 40px;
+        background: #f4faff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .footer-tagline {
+        color: var(--text-slate);
+        font-size: 13px;
+        font-weight: 400;
+      }
+      .footer-nav {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-nav a {
+        text-decoration: none;
+        color: var(--text-slate);
+        font-size: 13px;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--primary-teal);
+      }
+      .copyright {
+        font-size: 11px;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 768px) {
+        .header-content,
+        .footer-main {
+          flex-direction: column;
+          text-align: center;
+        }
+        .header-tagline {
+          display: none;
+        }
+      }
+
+      /* ─── MOBILE RESPONSIVE FIXES ─── */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .header-tagline {
+    display: none; /* keeps UI clean on mobile */
+  }
+
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* MAIN */
+  main {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 24px 16px;
+    border-radius: 24px;
+  }
+
+  .card::before {
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    right: -30px;
+  }
+
+  .card-inner {
+    gap: 20px;
+  }
+
+  .lock-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .code-display {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+  .trust-strip {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+
+  .trust-item {
+    justify-content: center;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .footer-main {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-accent"></div>
+      <div class="header-bg"></div>
+      <div class="header-separator"></div>
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">SamsR</span>
+            <span class="brand-sub">DocuSafe Platform</span>
+          </div>
+        </div>
+        <div class="header-tagline">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--primary-teal)"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <span>Secure Document Sharing & Verification</span>
+        </div>
+        <button class="contact-btn">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Contact Sender
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <div class="card-inner">
+          <div class="lock-icon">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <div style="text-align: center">
+            <h1
+              style="
+                color: rgba(11, 29, 56, 0.8);
+                font-size: 24px;
+                margin-bottom: 12px;
+              "
+            >
+              Secure document shared
+            </h1>
+            <p
+              style="
+                color: black;
+                font-size: 16px;
+                line-height: 1.6;
+                max-width: 384px;
+              "
+            >
+              <strong>[Sender Name]</strong> has shared access to
+              <strong>[Document Title]</strong> with you via the
+              <strong>SamsR Docusafe.</strong>
+            </p>
+          </div>
+          <div>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 14px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2.4px;
+              "
+            >
+              Verification Code
+            </p>
+            <div class="code-display">1 2 3 4 5 6</div>
+          </div>
+          <button class="btn-primary">View Document</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-sep"></div>
+      <div class="trust-strip">
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Military-grade AES-256
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Zero-knowledge architecture
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          DocuSafe Vault Technology
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          SOC 2 Type II Compliant
+        </div>
+      </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          SamsR <span style="color: #cbd5e1; font-weight: 200">|</span>
+          <span class="footer-tagline">Secure Document Platform</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Whitepaper</a>
+        </nav>
+        <div class="copyright">© 2024 SamsR Security. All rights reserved.</div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SamsR | Link Expired</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-teal: #0d83a1;
+        --bg-light: #f4faff;
+        --border-blue: #d1e7f4;
+        --text-dark: #1e293b;
+        --text-muted: #9db2ce;
+        --text-slate: #64748b;
+        --lock-bg: #bfe9ff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Nunito Sans", sans-serif;
+        background-color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-variation-settings:
+          "YTLC" 500,
+          "wdth" 100;
+      }
+
+    
+        /* ─── HEADER ─── */
+      header {
+        position: relative;
+        width: 100%;
+        z-index: 20;
+      }
+      .header-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--primary-teal),
+          #bfe9ff,
+          var(--primary-teal)
+        );
+      }
+      .header-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        z-index: -1;
+      }
+      .header-separator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 50px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0d83a1;
+        box-shadow: 0 4px 14px rgba(13, 131, 161, 0.3);
+        color: white;
+      }
+      .brand-name {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        color: var(--text-dark);
+      }
+      .brand-sub {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--primary-teal);
+      }
+      .contact-btn {
+        background: #ddf4ff;
+        border: 1px solid var(--border-blue);
+        padding: 8px 16px;
+        border-radius: 100px;
+        color: var(--primary-teal);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+      .contact-btn:hover {
+        background: #bfe9ff;
+      }
+
+         .header-tagline {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      /* ─── MAIN CONTENT ─── */
+
+      
+     
+      
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow: hidden;
+
+         background-image:
+          linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+          url("./bg.svg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+  
+      }
+
+      .expired-card {
+        width: 637px;
+        min-height: 449px; /* Matches the h-[449px] from your code */
+        background-color: var(--bg-light);
+        border: 1px solid var(--border-blue);
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 50px;
+        position: relative;
+      }
+
+      /* Icon Section */
+      .icon-circle {
+        width: 50px;
+        height: 50px;
+        background-color: var(--lock-bg);
+        border-radius: 29px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Typography */
+      .content-group {
+        text-align: center;
+        max-width: 407px;
+      }
+      .content-group h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: rgba(11, 29, 56, 0.8);
+        line-height: 32px;
+        margin-bottom: 12px;
+      }
+      .content-group p {
+        font-size: 18px;
+        color: var(--text-muted);
+        line-height: 28px;
+        white-space: pre-wrap;
+      }
+
+      /* Alert Box */
+      .alert-box {
+        width: 379px;
+        background-color: rgba(209, 231, 244, 0.4);
+        border: 1px solid var(--bg-light);
+        border-radius: 36px;
+        padding: 17px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .alert-text {
+        color: #171d1e;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      /* Footer Tech Text */
+      .tech-footer {
+        font-size: 18px;
+        color: var(--text-muted);
+        text-align: center;
+        width: 407px;
+      }
+      .tech-footer b {
+        font-weight: 700;
+        color: var(--text-muted); /* DocuSafe emphasized */
+      }
+
+      /* ─── FOOTER ─── */
+       footer {
+        margin-top: auto;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+      .footer-sep {
+        h-height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .trust-strip {
+        padding: 10px 40px;
+        border-bottom: 1px solid rgba(209, 231, 244, 0.5);
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .dot {
+        width: 4px;
+        height: 4px;
+        background: var(--border-blue);
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      .footer-main {
+        padding: 16px 40px;
+        background: #f4faff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .footer-tagline {
+        color: var(--text-slate);
+        font-size: 13px;
+        font-weight: 400;
+      }
+      .footer-nav {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-nav a {
+        text-decoration: none;
+        color: var(--text-slate);
+        font-size: 13px;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--primary-teal);
+      }
+      .copyright {
+        font-size: 11px;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 768px) {
+        .header-content,
+        .footer-main {
+          flex-direction: column;
+          text-align: center;
+        }
+        .header-tagline {
+          display: none;
+        }
+
+        /* HEADER FIX */
+.header-content {
+  padding: 12px 16px;
+  gap: 6px;
+}
+
+.brand {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.brand-name {
+  font-size: 18px;
+}
+
+.brand-sub {
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+/* CONTACT BUTTON */
+.contact-btn {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 30px;
+}
+
+/* REMOVE EXTRA GAP */
+main {
+  padding: 10px 12px;   /* reduce from 50px */
+  align-items: flex-start; /* push card up */
+}
+
+/* CARD POSITION */
+.expired-card {
+  margin-top: 10px;  /* small breathing space */
+  padding: 25px 16px;
+}
+
+/* ICON SIZE */
+.icon-circle {
+  width: 44px;
+  height: 44px;
+}
+
+/* TEXT ADJUST */
+.content-group h2 {
+  font-size: 20px;
+}
+
+.content-group p {
+  font-size: 14px;
+}
+
+/* ALERT */
+.alert-box {
+  padding: 12px;
+  border-radius: 18px;
+}
+
+.alert-text {
+  font-size: 13px;
+}
+
+/* FOOTER COMPACT */
+.trust-strip {
+  padding: 8px 10px;
+}
+
+.footer-main {
+  padding: 12px;
+}
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 20px;
+        }
+        .expired-card {
+          width: 100%;
+          padding: 40px 20px;
+          min-height: auto;
+        }
+        footer {
+          flex-direction: column;
+          height: auto;
+          padding: 20px;
+          gap: 15px;
+        }
+        .copyright {
+          text-align: center;
+          width: auto;
+        }
+      }
+
+
+      @media (max-width: 768px) {
+
+  /* HEADER */
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 10px;
+  }
+
+  .brand {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-tagline {
+    flex-wrap: wrap;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* MAIN */
+  main {
+    padding: 20px 12px;
+  }
+
+  .expired-card {
+    width: 100%;
+    padding: 30px 18px;
+    border-radius: 24px;
+    gap: 20px;
+  }
+
+  /* TEXT */
+  .content-group {
+    max-width: 100%;
+  }
+
+  .content-group h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .content-group p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  /* ALERT BOX */
+  .alert-box {
+    width: 100%;
+    padding: 14px;
+    border-radius: 20px;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+
+  .alert-text {
+    font-size: 14px;
+  }
+
+  /* FOOTER TEXT */
+  .tech-footer {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+  .trust-strip {
+    padding: 10px 15px;
+    gap: 10px;
+  }
+
+  .trust-item {
+    font-size: 10px;
+  }
+
+  .footer-main {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .footer-nav a {
+    font-size: 12px;
+  }
+
+  .copyright {
+    font-size: 10px;
+  }
+}
+    </style>
+  </head>
+  <body>
+     <header>
+      <div class="header-accent"></div>
+      <div class="header-bg"></div>
+      <div class="header-separator"></div>
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <p class="brand-name">SamsR</p>
+            <p class="brand-sub">DocuSafe Platform</p>
+          </div>
+        </div>
+        <div class="header-tagline">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--primary-teal)"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+          </svg>
+          <span>Shared by <strong>Anand</strong></span>
+          <br />
+
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--primary-teal)"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          <span>Session expires in 24h</span>
+        </div>
+
+        <button class="contact-btn">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Contact Sender
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="expired-card">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+          "
+        >
+          <div class="icon-circle">
+            <svg width="24" height="24" viewBox="0 0 20.6 19.8" fill="none">
+              <path
+                d="M14.6 12.6L13.1 11.1C13.7 10.8 14.1 10.2 14.1 9.5C14.1 8.4 13.2 7.5 12.1 7.5H10.1V5.5H12.1C14.3 5.5 16.1 7.3 16.1 9.5C16.1 10.8 15.5 11.9 14.6 12.6ZM19.1 17.6L17.8 18.9L13.9 15H12.1V13.2L10.9 12H8.1C5.9 12 4.1 10.2 4.1 8C4.1 6.7 4.7 5.6 5.6 4.9L0.1 2.1L1.4 0.8L19.1 17.6ZM8.1 10H8.3L6.3 8C6.1 8.2 6.1 8.1 6.1 8.1C6.1 9.2 7 10.1 8.1 10Z"
+                fill="#171D1E"
+              />
+            </svg>
+          </div>
+
+          <div class="content-group">
+            <h2>Link Expired</h2>
+            <p>
+              This secure link has been disabled after 5 failed attempts or the
+              7-day window has passed.
+            </p>
+          </div>
+        </div>
+
+        <div class="alert-box">
+          <svg width="17" height="17" viewBox="0 0 16.6667 16.6667" fill="none">
+            <path
+              d="M8.33 0C3.73 0 0 3.73 0 8.33C0 12.93 3.73 16.66 8.33 16.66C12.93 16.66 16.66 12.93 16.66 8.33C16.66 3.73 12.93 0 8.33 0ZM9.16 12.5H7.5V10.83H9.16V12.5ZM9.16 9.16H7.5V4.16H9.16V9.16Z"
+              fill="#171D1E"
+            />
+          </svg>
+          <span class="alert-text"
+            >Please contact the sender to request new link.</span
+          >
+        </div>
+
+        <div class="tech-footer">
+          Securely protected by <b>DocuSafe</b> Vault technology.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-sep"></div>
+      <div class="trust-strip">
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Military-grade AES-256
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Zero-knowledge architecture
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          DocuSafe Vault Technology
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          SOC 2 Type II Compliant
+        </div>
+      </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          SamsR <span style="color: #cbd5e1; font-weight: 200">|</span>
+          <span class="footer-tagline">Secure Document Platform</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Whitepaper</a>
+        </nav>
+        <div class="copyright">© 2024 SamsR Security. All rights reserved.</div>
+      </div>
+    </footer>
+  </body>
+</html>

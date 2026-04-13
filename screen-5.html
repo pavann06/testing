@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SamsR</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-teal: #0d83a1;
+        --bg-light: #f4faff;
+        --border-blue: #d1e7f4;
+        --text-dark: #1e293b;
+        --text-muted: #9db2ce;
+        --text-slate: #64748b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Nunito Sans", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* HEADER */
+      /* ─── HEADER ─── */
+      header {
+        position: relative;
+        width: 100%;
+        z-index: 20;
+      }
+      .header-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--primary-teal),
+          #bfe9ff,
+          var(--primary-teal)
+        );
+      }
+      .header-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        z-index: -1;
+      }
+      .header-separator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 50px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0D83A1;
+        box-shadow: 0 4px 14px rgba(13, 131, 161, 0.3);
+        color: white;
+      }
+      .brand-name {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        color: var(--text-dark);
+      }
+      .brand-sub {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--primary-teal);
+      }
+      .contact-btn {
+        background: #ddf4ff;
+        border: 1px solid var(--border-blue);
+        padding: 8px 16px;
+        border-radius: 100px;
+        color: var(--primary-teal);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+      .contact-btn:hover {
+        background: #bfe9ff;
+      }
+
+      .header-tagline {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      /* MAIN SECTION */
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: #ffffff;
+
+      
+
+        
+      }
+
+      /* NEW SECTION CARD */
+      .main-section {
+        width: 100%;
+        max-width: 600px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-blue);
+        border-radius: 40px;
+        padding: 50px;
+        text-align: center;
+      }
+
+    main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow: hidden;
+
+         background-image:
+          linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+          url("./bg.svg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+  
+      }
+
+      /* MAIN CARD */
+      .doc-card {
+        width: 100%;
+        max-width: 900px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-blue);
+        border-radius: 40px;
+        padding: 40px;
+        text-align: center;
+      }
+
+      /* ICON */
+      .top-icon {
+        width: 50px;
+        height: 50px;
+        background: #bfe9ff;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* TEXT */
+      .doc-card h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #0b1d38;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        color: var(--text-muted);
+        font-size: 15px;
+        margin-bottom: 25px;
+      }
+
+      /* FILE LIST */
+      .file-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* FILE ITEM */
+      .file-item {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* LEFT SIDE */
+      .file-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .file-icon {
+        width: 45px;
+        height: 45px;
+        background: #e1f4ff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* TEXT */
+      .file-left h4 {
+        font-size: 15px;
+        color: #191c1d;
+      }
+
+      .file-left span {
+        font-size: 13px;
+        color: #64748b;
+      }
+
+      /* BUTTONS */
+      .file-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn-outline {
+        background: #fff;
+        border: 1px solid var(--border-blue);
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: var(--primary-teal);
+        cursor: pointer;
+      }
+
+      .btn-filled {
+        background: #d1e7f4;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: var(--primary-teal);
+        cursor: pointer;
+      }
+
+      /* SECURITY BOX */
+      .security-box {
+        margin-top: 25px;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        gap: 15px;
+        text-align: left;
+        border: 1px solid #e2e8f0;
+      }
+
+      .sec-icon {
+        width: 40px;
+        height: 40px;
+        background: #d1e7f4;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .security-box h5 {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      .security-box p {
+        font-size: 13px;
+        color: #64748b;
+      }
+
+      /* BUTTON */
+      .primary-btn {
+        padding: 12px 20px;
+        background: var(--primary-teal);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        margin-top: auto;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+      .footer-sep {
+        h-height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border-blue),
+          transparent
+        );
+      }
+      .trust-strip {
+        padding: 10px 40px;
+        border-bottom: 1px solid rgba(209, 231, 244, 0.5);
+        background: linear-gradient(to bottom, #eef8ff, #f4faff);
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .dot {
+        width: 4px;
+        height: 4px;
+        background: var(--border-blue);
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      .footer-main {
+        padding: 16px 40px;
+        background: #f4faff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .footer-tagline {
+        color: var(--text-slate);
+        font-size: 13px;
+        font-weight: 400;
+      }
+      .footer-nav {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-nav a {
+        text-decoration: none;
+        color: var(--text-slate);
+        font-size: 13px;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--primary-teal);
+      }
+      .copyright {
+        font-size: 11px;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 768px) {
+        .header-content,
+        .footer-main {
+          flex-direction: column;
+          text-align: center;
+        }
+        .header-tagline {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 20px;
+        }
+        .expired-card {
+          width: 100%;
+          padding: 40px 20px;
+          min-height: auto;
+        }
+        footer {
+          flex-direction: column;
+          height: auto;
+          padding: 20px;
+          gap: 15px;
+        }
+        .copyright {
+          text-align: center;
+          width: auto;
+        }
+      }
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        footer {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+      }
+
+      /* ================= MOBILE FIXES ================= */
+      @media (max-width: 768px) {
+        /* HEADER */
+        .header-content {
+          flex-direction: column;
+          gap: 10px;
+          padding: 12px 16px;
+        }
+
+        .brand {
+          justify-content: center;
+        }
+
+        .contact-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .header-tagline {
+          flex-wrap: wrap;
+          justify-content: center;
+          text-align: center;
+          gap: 6px;
+        }
+
+        /* MAIN CARD */
+        main {
+          padding: 20px 12px;
+        }
+
+        .doc-card {
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .doc-card h2 {
+          font-size: 18px;
+          line-height: 24px;
+        }
+
+        .subtitle {
+          font-size: 14px;
+          line-height: 22px;
+        }
+
+        /* FILE ITEM STACK */
+        .file-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .file-left {
+          width: 100%;
+        }
+
+        .file-left h4 {
+          font-size: 14px;
+          word-break: break-word;
+        }
+
+        .file-left span {
+          font-size: 12px;
+        }
+
+        /* BUTTONS FULL WIDTH */
+        .file-actions {
+          width: 100%;
+          display: flex;
+          gap: 10px;
+        }
+
+        .file-actions button {
+          flex: 1;
+          text-align: center;
+          padding: 8px 0;
+          font-size: 13px;
+        }
+
+        /* SECURITY BOX STACK */
+        .security-box {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+
+        .security-box p {
+          font-size: 12px;
+          line-height: 18px;
+        }
+
+        /* FOOTER */
+        .footer-main {
+          flex-direction: column;
+          text-align: center;
+          gap: 10px;
+        }
+
+        .footer-nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+        }
+
+        .trust-strip {
+          padding: 10px 16px;
+          gap: 10px;
+        }
+
+        .trust-item {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="header-accent"></div>
+      <div class="header-bg"></div>
+      <div class="header-separator"></div>
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <p class="brand-name">SamsR</p>
+            <p class="brand-sub">DocuSafe Platform</p>
+          </div>
+        </div>
+        <div class="header-tagline">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--primary-teal)"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+          </svg>
+          <span>Shared by <strong>Anand</strong></span>
+          <br />
+
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--primary-teal)"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          <span>Session expires in 24h</span>
+        </div>
+
+        <button class="contact-btn">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Contact Sender
+        </button>
+      </div>
+    </header>
+
+    <!-- NEW SECTION -->
+    <main>
+      <div class="doc-card">
+        <!-- TOP ICON -->
+        <div class="top-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+
+        <!-- TITLE -->
+        <h2>Shared documents from Anand via DocuSafe</h2>
+        <p class="subtitle">
+          Review and download your sensitive documents. These files are
+          protected with military-grade encryption and will expire in 24 hours.
+        </p>
+
+        <!-- FILE LIST -->
+        <div class="file-list">
+          <!-- ITEM -->
+          <div class="file-item">
+            <div class="file-left">
+              <div class="file-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: var(--primary-teal)"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <line x1="10" y1="9" x2="8" y2="9" />
+                </svg>
+              </div>
+              <div>
+                <h4>Trust_Amendment_2026.pdf</h4>
+                <span>2.4 MB • PDF Document</span>
+              </div>
+            </div>
+            <div class="file-actions">
+              <button class="btn-outline">View</button>
+              <button class="btn-filled">Download</button>
+            </div>
+          </div>
+
+          <div class="file-item">
+            <div class="file-left">
+              <div class="file-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: var(--primary-teal)"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <line x1="10" y1="9" x2="8" y2="9" />
+                </svg>
+              </div>
+              <div>
+                <h4>Family_Investment_Statement_Q1.xlsx</h4>
+                <span>1.1 MB • Spreadsheet</span>
+              </div>
+            </div>
+            <div class="file-actions">
+              <button class="btn-outline">View</button>
+              <button class="btn-filled">Download</button>
+            </div>
+          </div>
+
+          <div class="file-item">
+            <div class="file-left">
+              <div class="file-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: var(--primary-teal)"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <line x1="10" y1="9" x2="8" y2="9" />
+                </svg>
+              </div>
+              <div>
+                <h4>Property_Deed_London.pdf</h4>
+                <span>3.2 MB • Legal Document</span>
+              </div>
+            </div>
+            <div class="file-actions">
+              <button class="btn-outline">View</button>
+              <button class="btn-filled">Download</button>
+            </div>
+          </div>
+
+          <div class="file-item">
+            <div class="file-left">
+              <div class="file-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: var(--primary-teal)"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <line x1="10" y1="9" x2="8" y2="9" />
+                </svg>
+              </div>
+              <div>
+                <h4>Passport_Scans_Anand.zip</h4>
+                <span>5.6 MB • Compressed Archive</span>
+              </div>
+            </div>
+            <div class="file-actions">
+              <button class="btn-outline">View</button>
+              <button class="btn-filled">Download</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECURITY BOX -->
+        <div class="security-box">
+          <div class="sec-icon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#0d83a1"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <h5>End-to-End Encrypted</h5>
+            <p>
+              These documents are protected by AES-256 encryption. Only you and
+              the sender can access the unencrypted data. Your session is
+              secured with a unique cryptographic key.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-sep"></div>
+      <div class="trust-strip">
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Military-grade AES-256
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Zero-knowledge architecture
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          DocuSafe Vault Technology
+          <div class="dot"></div>
+        </div>
+        <div class="trust-item">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0d83a1"
+            stroke-width="2"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          SOC 2 Type II Compliant
+        </div>
+      </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          SamsR <span style="color: #cbd5e1; font-weight: 200">|</span>
+          <span class="footer-tagline">Secure Document Platform</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Whitepaper</a>
+        </nav>
+        <div class="copyright">© 2024 SamsR Security. All rights reserved.</div>
+      </div>
+    </footer>
+  </body>
+</html>
